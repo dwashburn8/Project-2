@@ -11,7 +11,7 @@ const jwtSecret = require("../config/jwt-config");
 // Flash
 router.use(
   session({
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: null },
     secret: "wootwoot",
     saveUninitialized: true,
     resave: true
