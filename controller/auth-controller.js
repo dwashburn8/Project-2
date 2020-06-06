@@ -27,11 +27,14 @@ router.use(passport.session());
 router.use(cookieParser());
 
 router.get("/", (req, res) => {
-  if (req.user) {
+  // if (req.user) {
     res.render("index", { user: req.user });
-  } else {
-    res.redirect("/login");
-  }
+  // } else {
+    // res.redirect("/login");
+  // }
+});
+router.get("/favorites", (req, res) => {
+  res.render("favorites", { user: req.user });
 });
 
 router.get("/login", (req, res) => {

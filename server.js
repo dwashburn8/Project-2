@@ -4,7 +4,6 @@ const Handlebars = require("handlebars");
 const exphbs = require("express-handlebars");
 const { allowInsecurePrototypeAccess } = require("@handlebars/allow-prototype-access");
 const authController = require("./controller/auth-controller");
-const userController = require("./controller/user-controller");
 const historyController = require("./controller/history-controller");
 
 const db = require("./models");
@@ -28,7 +27,6 @@ app.engine(
 app.set("view engine", "handlebars");
 
 app.use(authController);
-app.use(userController);
 app.use(historyController);
 
 const syncOptions = { force: false };
