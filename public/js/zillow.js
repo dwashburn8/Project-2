@@ -32,14 +32,14 @@ $(document).ready(() => {
             console.log(response);
 
             for (let i = 0; i < response.properties.length; i++) {
-                let newDiv = $("<div>")
-                let newTitle = $("<h3>");
-                let newImg = $("<img>");
-                let newP = $("<p>");
-                let newP2 = $("<p>");
-                let newP3 = $("<p>");
-                let newP4 = $("<p>");
-                let newButton = $("<button>")
+                var newDiv = $("<div>")
+                var newTitle = $("<h3>");
+                var newImg = $("<img>");
+                var newP = $("<p>");
+                var newP2 = $("<p>");
+                var newP3 = $("<p>");
+                var newP4 = $("<p>");
+                var newButton = $("<button>")
                 newButton.attr("class", "btn btn-danger saveButton")
 
                 newDiv.attr("class", "col-4 pt-3")
@@ -51,7 +51,12 @@ $(document).ready(() => {
                 newP.text("Price: $" + response.properties[i].price);
                 newP2.text("Bedrooms: " + response.properties[i].beds);
                 newP3.text("Bathrooms: " + response.properties[i].baths);
-                newP4.text(response.properties[i].building_size.size + " sqft")
+
+                if (response.properties[i].building_size) 
+                {
+                    newP4.text(response.properties[i].building_size.size + " sqft")
+                }
+
                 newDiv.append(newTitle)
                 newDiv.append(newImg)
                 newDiv.append(newP)
@@ -69,17 +74,17 @@ $(document).ready(() => {
 
             $(".saveButton").on("click", (event) => {
                 event.preventDefault();
-            //     let favoriteHouse = [{
-            //         address: newTitle.val(),
-            //         img: newImg.val(),
-            //         price: newP.val(),
-            //         bedrooms: newP2.val(),
-            //         bathrooms: newP3.val(),
-            //         sqft: newP4.val()
-            //     }]
-            // favoriteArr.push(favoriteHouse)
-                console.log("working");
-                
+                let favoriteHouse = [{
+                    address: newTitle.val(),
+                    img: newImg.val(),
+                    price: newP.val(),
+                    bedrooms: newP2.val(),
+                    bathrooms: newP3.val(),
+                    sqft: newP4.val()
+                }]
+                favoriteArr.push(favoriteHouse)
+                console.log(favoriteHouse);
+        
             })
         });
 
@@ -87,7 +92,7 @@ $(document).ready(() => {
 
 
 
-        
+
     })
 
 })
