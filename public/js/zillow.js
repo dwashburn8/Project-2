@@ -3,17 +3,12 @@ $(document).ready(() => {
 
     let city = $("#searchValue").val()
     let favoriteArr = [];
-    let cityVal = city.split(',');
-    let cityName = cityVal[0]
-    // let stateCode = $("");
-
-
-
 
 
 
 
     $("#searchBtn").on("click", function (event) {
+        $("#houses").empty();
         let city = $("#searchValue").val()
         var settings = {
             "async": true,
@@ -30,7 +25,6 @@ $(document).ready(() => {
 
         $.ajax(settings).done((response) => {
             console.log(response);
-
             for (let i = 0; i < response.properties.length; i++) {
                 var newDiv = $("<div>")
                 var newTitle = $("<h3>");
@@ -41,8 +35,9 @@ $(document).ready(() => {
                 var newP4 = $("<p>");
                 var newButton = $("<button>")
                 newButton.attr("class", "btn btn-danger saveButton")
+                newButton.attr("value", response.properties[i].property_id)
 
-                newDiv.attr("class", "col-4 pt-3")
+                newDiv.attr("class", "col-4 pt-3 wrapper")
                 newImg.attr("height", "200px")
                 newImg.attr("width", "300px")
                 newButton.text("Save to favorites")
@@ -67,31 +62,31 @@ $(document).ready(() => {
                 $("#houses").prepend(newDiv)
 
             }
-
-
-
-
-
-            $(".saveButton").on("click", (event) => {
+            
+            $(".wrapper").on("click", ".saveButton", (event) => {
                 event.preventDefault();
+                let houseIndex= response.properties.map(house=>{
+                  return  house.property_id
+                }).indexOf(event.target.value)
+              
+                let houseToSave = response.properties[houseIndex]
+
+            
+
                 let favoriteHouse = [{
-                    address: newTitle.val(),
-                    img: newImg.val(),
-                    price: newP.val(),
-                    bedrooms: newP2.val(),
-                    bathrooms: newP3.val(),
-                    sqft: newP4.val()
+                    address: houseToSave.address.line,
+                    img: houseToSave.thumbnail,
+                    price: houseToSave.price,
+                    bedrooms: houseToSave.beds,
+                    bathrooms: houseToSave.baths,
+                    sqft: houseToSave.building_size.size
                 }]
                 favoriteArr.push(favoriteHouse)
-                console.log(favoriteHouse);
+                console.log(favoriteArr);
         
             })
+
         });
-
-
-
-
-
 
     })
 
