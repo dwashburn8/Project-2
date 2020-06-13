@@ -33,9 +33,10 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  User.associate = models => {
-    User.hasMany(models.fav, {
-      onDelete: "cascade"
+  User.associate = (models) => {
+    User.belongsToMany(models.fav, {
+      through: "bridge"
+
     });
   };
 

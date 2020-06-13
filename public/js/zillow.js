@@ -70,24 +70,48 @@ $(document).ready(() => {
                 }).indexOf(event.target.value)
               
                 let houseToSave = response.properties[houseIndex]
-
+                
             
+                const handleFavSubmit = () => {
+                    
 
-                let favoriteHouse = [{
-                    address: houseToSave.address.line,
-                    img: houseToSave.thumbnail,
-                    price: houseToSave.price,
-                    bedrooms: houseToSave.beds,
-                    bathrooms: houseToSave.baths,
-                    sqft: houseToSave.building_size.size
-                }]
-                favoriteArr.push(favoriteHouse)
-                console.log(favoriteArr);
+                    addFavorite({
+                        city: houseToSave.address.city,
+                        address: houseToSave.address.line,
+                        img: houseToSave.thumbnail,
+                        price: houseToSave.price,
+                        bedrooms: houseToSave.beds,
+                        bathrooms: houseToSave.baths,
+                        sqft: houseToSave.building_size.size,
+                        user_id: 1
+                        
+                    })
+                };
+
+                handleFavSubmit()
+                // let favoriteHouse = [{
+                //     address: houseToSave.address.line,
+                //     img: houseToSave.thumbnail,
+                //     price: houseToSave.price,
+                //     bedrooms: houseToSave.beds,
+                //     bathrooms: houseToSave.baths,
+                //     sqft: houseToSave.building_size.size
+                // }]
+                // favoriteArr.push(favoriteHouse)
+                // console.log(favoriteArr);
         
             })
+
+
 
         });
 
     })
 
+
+    function addFavorite(favData) {
+        console.log(favData);
+        
+        $.post("/api/favorites", favData)
+      }
 })

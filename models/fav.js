@@ -33,10 +33,9 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
     Fav.associate = (models) => {
-        Fav.belongsTo(models.user, {
-          foreignKey: {
-            allowNull: false
-          }
+        Fav.belongsToMany(models.user, {
+            through: "bridge"
+
         });
       };
       
