@@ -50,23 +50,23 @@ $(document).ready(() => {
             }
         };
         initMap();
-        for (let i = 0; i < j; i++) {
-            save(i);
-            console.log(j);
-        };
+        // for (let i = 0; i < j; i++) {
+        //     save(i);
+        //     console.log(j);
+        // };
         console.log(saveData)
         console.log(locations);
         console.log(labels);
     };
 
     let locationLat = 39.8283;
-    let locationLong = -98.5795;
+    let locationLng = -98.5795;
 
     //this is for diplaying map
     function initMap() {
         var options = {
             zoom: 10,
-            center: { lat: locationLat, lng: locationLong }
+            center: { lat: locationLat, lng: locationLng }
         }
         //new map
         console.log("this is Map function")
@@ -90,7 +90,7 @@ $(document).ready(() => {
     $("#searchBtn").on("click", function (event) {
         event.preventDefault();
 
-        var apiKey = "AIzaSyDUAau8sUWi-qDzRK-JTPvVsyk1xYDnebU";
+        var apiKey = "AIzaSyDM2dKFVaRH8QYK4hoD5cDQy5niJlEtGbs";
         let searchTerms = $("#houses").val();
         let corsUrl = "https://cors-anywhere.herokuapp.com/"
         var queryUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchTerms + "&key=" + apiKey
@@ -106,11 +106,11 @@ $(document).ready(() => {
             locationLat =  response.results[0].geometry.location.lat
             locationLng =  response.results[0].geometry.location.lng
             console.log("these are the coordinates");
-        })
+        });
 
 
         $("#houses").empty();
-        let city = $("#searchValue").val();
+        let city = $("#searchValue").val().trim();
         var queryUrl = "https://realtor.p.rapidapi.com/properties/v2/list-for-sale?sort=relevance&city=" + city + "&limit=100&offset=0&state_code="
 
         $
@@ -119,10 +119,10 @@ $(document).ready(() => {
             method: "GET"
         })
         .then(function (response) {
-            console.log(response);
-            locationLat = response.results[0].properties.address.lat
-            locationLong = response.results[0].properties.address.lon
-            console.log("these are the coordinates");
+            // console.log(response);
+            // locationLat = response.results[0].properties.address.lat
+            // locationLng = response.results[0].properties.address.lon
+            // console.log("these are the coordinates");
 
             renderSearchInfo(response)
         })
