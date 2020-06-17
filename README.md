@@ -3,6 +3,7 @@
 
 # House Hunter App
 
+![Demo Logo](/public/img/Screen Shot 2020-06-16 at 9.14.17 PM.png)
 
 ## Description
                           
