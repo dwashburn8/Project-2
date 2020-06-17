@@ -39,7 +39,7 @@ router.get("/favorites", async (req, res) => {
   });
 
 router.post("/api/favorites", async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
 try {
     const fav = req.body;
     // fav.user = [{id: fav.user_id, "db.bridge": {selfGranted:true}}];
@@ -58,5 +58,40 @@ try {
 
 
 );
+
+router.get("/api/favorites/:id", async (req, res) => {
+    try {
+      const data = await db.fav.findOne({
+        where: {
+          id: req.params.id
+        },
+        include: [db.user]
+      });
+  
+      res.json(data);
+  
+    } catch (error) {
+      console.log(error);
+  
+      res.status(500).send();
+    }
+  });
+
+router.delete("/api/favorites/:id", async (req, res) => {
+    try {
+      const data = await db.fav.destroy({
+        where: {
+          id: req.params.id
+        }
+      });
+  
+      res.json(data);
+  
+    } catch (error) {
+      console.log(error);
+  
+      res.status(500).send();
+    }
+  });
 
 module.exports = router;
