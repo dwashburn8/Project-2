@@ -90,23 +90,7 @@ $(document).ready(() => {
     $("#searchBtn").on("click", function (event) {
         event.preventDefault();
 
-        var apiKey = "AIzaSyDM2dKFVaRH8QYK4hoD5cDQy5niJlEtGbs";
-        let searchTerms = $("#houses").val();
-        let corsUrl = "https://cors-anywhere.herokuapp.com/"
-        var queryUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchTerms + "&key=" + apiKey
-
-        $
-            .ajax({
-                url: queryUrl,
-                method: "GET"
-
-            })
-            .then(function (response) {
-                console.log(response)
-                locationLat = response.results[0].geometry.location.lat
-                locationLng = response.results[0].geometry.location.lng
-                console.log("these are the coordinates");
-            });
+       
 
 
         $("#houses").empty();
@@ -137,6 +121,24 @@ $(document).ready(() => {
         // let cityName = $("#houses").val().trim();
         // console.log(cityName);
         // let city = 
+        var apiKey = "AIzaSyDM2dKFVaRH8QYK4hoD5cDQy5niJlEtGbs";
+        let searchTerms = $("#houses").val();
+        let corsUrl = "https://cors-anywhere.herokuapp.com/"
+        var queryUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchTerms + "&key=" + apiKey
+
+        $
+            .ajax({
+                url: queryUrl,
+                method: "GET"
+
+            })
+            .then(function (response) {
+                console.log(response)
+                locationLat = response.results[0].geometry.location.lat
+                locationLng = response.results[0].geometry.location.lng
+                console.log("these are the coordinates");
+            });
+
     });
 
 })
@@ -150,3 +152,4 @@ $(document).ready(() => {
 //     client.send();
 //   }
 //   fetchStatus();
+
