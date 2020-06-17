@@ -22,7 +22,7 @@ $(document).ready(() => {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "realtor.p.rapidapi.com",
-                "x-rapidapi-key": "28fa3a645fmsh6347d64020ec954p186251jsn525605cce2a6"
+                "x-rapidapi-key": "ade8544827msh9659d2e7e6c8896p12e1ddjsnd9a76903cb81"
             }
         }
         // console.log(city);
@@ -60,9 +60,6 @@ $(document).ready(() => {
         )
     });
 
-    const buildMap = (lat, lon) => {
-
-    }
 
 
 });

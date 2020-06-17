@@ -3,7 +3,7 @@ $(document).ready(() => {
 
     // let city = $("#searchValue").val()
     let favoriteArr = [];
-
+    $(".alert").hide();
 
 
 
@@ -25,7 +25,7 @@ $(document).ready(() => {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "realtor.p.rapidapi.com",
-                "x-rapidapi-key": "28fa3a645fmsh6347d64020ec954p186251jsn525605cce2a6"
+                "x-rapidapi-key": "ade8544827msh9659d2e7e6c8896p12e1ddjsnd9a76903cb81"
             }
         }
         // console.log(city);
@@ -76,6 +76,9 @@ $(document).ready(() => {
             
             $(".wrapper").on("click", ".saveButton", (event) => {
                 event.preventDefault();
+                $(".alert").show();
+
+                $('.alert').alert()
                 let houseIndex= response.properties.map(house=>{
                   return  house.property_id
                 }).indexOf(event.target.value)
