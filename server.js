@@ -6,7 +6,7 @@ const { allowInsecurePrototypeAccess } = require("@handlebars/allow-prototype-ac
 const authController = require("./controller/auth-controller");
 const historyController = require("./controller/history-controller");
 const favController = require("./controller/fav-controller");
-const userController = require("./controller/user-controller")
+const userController = require("./controller/user-controller");
 const db = require("./models");
 
 const app = express();
