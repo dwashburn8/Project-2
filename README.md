@@ -3,7 +3,7 @@
 
 # House Hunter App
 
-![Demo Logo](/img/demo.png)
+![Demo Logo](public/img/demo.png)
 
 ## Description
                           
