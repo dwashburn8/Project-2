@@ -1,6 +1,8 @@
 $(document).ready(() => {
     var locations = [];
     var labels = [];
+    var longitude = [];
+    var latitude = [];
 
     function renderSearchInfo(searchData) {
 
@@ -111,33 +113,54 @@ $(document).ready(() => {
 
             .then(function (response) {
                 console.log(response);
-                // locationLat = response.results[0].properties.address.lat
-                // locationLng = response.results[0].properties.address.lon
-                console.log("these are the coordinates");
+                for(let i =0; i< response.properties.length; i++){
+                    let locations = [{
+                        lat: response.properties.address.lat,
+                        lon: response.properties.address.lon
+                    }]
 
-                renderSearchInfo(response)
+
+
+                }
+console.log(locations);
+
+                var settings2 = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&latlng=40.714224%252C-73.96145",
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+                        "x-rapidapi-key": "28fa3a645fmsh6347d64020ec954p186251jsn525605cce2a6"
+                    }
+                }
+                
+                $.ajax(settings2).done(function (data) {
+                    console.log(data);
+                });
+                // renderSearchInfo(response)
             })
 
         // let cityName = $("#houses").val().trim();
         // console.log(cityName);
         // let city = 
-        var apiKey = "AIzaSyDM2dKFVaRH8QYK4hoD5cDQy5niJlEtGbs";
-        let searchTerms = $("#houses").val();
-        let corsUrl = "https://cors-anywhere.herokuapp.com/"
-        var queryUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchTerms + "&key=" + apiKey
+        // var apiKey = "AIzaSyDM2dKFVaRH8QYK4hoD5cDQy5niJlEtGbs";
+        // let searchTerms = $("#houses").val();
+        // let corsUrl = "https://cors-anywhere.herokuapp.com/"
+        // var queryUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchTerms + "&key=" + apiKey
 
-        $
-            .ajax({
-                url: queryUrl,
-                method: "GET"
+        // $
+        //     .ajax({
+        //         url: queryUrl,
+        //         method: "GET"
 
-            })
-            .then(function (response) {
-                console.log(response)
-                locationLat = response.results[0].geometry.location.lat
-                locationLng = response.results[0].geometry.location.lng
-                console.log("these are the coordinates");
-            });
+        //     })
+        //     .then(function (response) {
+        //         console.log(response)
+        //         locationLat = response.results[0].geometry.location.lat
+        //         locationLng = response.results[0].geometry.location.lng
+        //         console.log("these are the coordinates");
+        //     });
 
     });
 

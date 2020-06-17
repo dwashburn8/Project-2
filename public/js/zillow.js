@@ -48,7 +48,7 @@ $(document).ready(() => {
                 newButton.attr("class", "btn btn-danger saveButton")
                 newButton.attr("value", response.properties[i].property_id)
 
-                newDiv.attr("class", "col-4 pt-3 wrapper")
+                newDiv.attr("class", "col-lg-4 pt-3 wrapper col-sm-12")
                 newImg.attr("height", "200px")
                 newImg.attr("width", "300px")
                 newButton.text("Save to favorites")
@@ -111,7 +111,7 @@ $(document).ready(() => {
 
     })
 
-    
+
 
 
 
@@ -122,4 +122,26 @@ $(document).ready(() => {
         
         $.post("/api/favorites", favData)
       }
+
+      function deletePost(id) {
+        $.ajax({
+          method: "DELETE",
+          url: "/api/favorites/" + id
+        })
+          .then(function() {
+          });
+      }
+
+      $(".deleteWrapper").on("click", ".deleteFav", (event) => {
+        event.preventDefault();
+        let houseId = event.target.value;
+        deletePost(houseId);
+        console.log(houseId);
+        location.reload();
+        
+        
+    // console.log($("#userID").attr("data-id"));
+    
+
+    })
 })

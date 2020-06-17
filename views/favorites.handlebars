@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">House Hunters</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,9 +21,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12 pt-3 text-center">
+        <div class="col-12 pt-3 text-center bg-primary text-white">
             <h1>Saved Homes</h1>
-            <hr>
+            <br>
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
 <div class="container">
     <div class="row">
         {{#each favs}}
-        <div class="col-4 text-center pt-3">
+        <div class="col-lg-4 col-sm-12 text-center pt-3 deleteWrapper">
 
             <h3>{{this.dataValues.address}}</h3>
             <h3>{{this.dataValues.city}}, {{this.dataValues.state_code}}</h3>
@@ -40,7 +40,7 @@
             <p>Bedrooms: {{this.dataValues.bedrooms}}</p>
             <p>Bathrooms: {{this.dataValues.bathrooms}}</p>
             <p>Square Feet: {{this.dataValues.square_feet}}</p>
-            <button class="btn btn-primary deleteFav">Remove From Saved Homes</button>
+            <button value="{{this.dataValues.id}}" class="btn btn-primary deleteFav">Remove From Saved Homes</button>
 
         </div>
         {{/each}}
