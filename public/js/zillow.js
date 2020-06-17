@@ -138,10 +138,5 @@ $(document).ready(() => {
         deletePost(houseId);
         console.log(houseId);
         location.reload();
-        
-        
-    // console.log($("#userID").attr("data-id"));
-    
-
     })
 })
