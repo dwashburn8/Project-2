@@ -4,7 +4,7 @@
 
 .backgroundImg {
   background-image: url("https://cdn.pixabay.com/photo/2016/06/24/10/47/architecture-1477041_1280.jpg");
-  height: 700px;
+  height: 900px;
   max-width: 100%;
  background-repeat: no-repeat;
 background-position: center;
@@ -15,6 +15,7 @@ background-size: 100%;
  padding-top: 25%;
 }
 
-#housesContainer{
-  margin-top: 200px;
-} 
+.searchDivs {
+  margin-left: 80px;
+}
+

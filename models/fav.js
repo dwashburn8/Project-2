@@ -10,8 +10,12 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.TEXT,
                 allowNull: false
             },
+            img: {
+                type: DataTypes.TEXT,
+                allowNull: false
+            },
             price: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.TEXT,
                 allowNull: false
             },
             square_feet: {
@@ -25,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
             bathrooms: {
                 type: DataTypes.TEXT,
                 allowNull: false
+            },
+            state_code:{
+                type: DataTypes.TEXT,
+                allowNull: false
             }
         },
         {
@@ -33,10 +41,13 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
     Fav.associate = (models) => {
-        Fav.belongsToMany(models.user, {
-            through: "bridge"
-
-        });
+        Fav.belongsTo(models.user, {
+            foreignKey: {
+              name: "user_id",
+              allowNull: false
+            }
+          });
+        
       };
       
     return Fav;

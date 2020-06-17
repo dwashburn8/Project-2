@@ -34,11 +34,13 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = (models) => {
-    User.belongsToMany(models.fav, {
-      through: "bridge"
-
+    User.hasMany(models.fav, {
+      onDelete: "cascade",
+      foreignKey: {
+        name: "user_id",
+        allowNull: false
+      }
     });
   };
-
   return User;
 };
