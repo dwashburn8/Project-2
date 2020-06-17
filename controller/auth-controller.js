@@ -33,9 +33,7 @@ router.get("/", (req, res) => {
     res.redirect("/login");
   }
 });
-router.get("/favorites", (req, res) => {
-  res.render("favorites", { user: req.user });
-});
+
 
 router.get("/login", (req, res) => {
   res.render("login", { message: req.flash("error") });

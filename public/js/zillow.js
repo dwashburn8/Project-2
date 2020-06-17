@@ -1,7 +1,7 @@
 $(document).ready(() => {
 
 
-    let city = $("#searchValue").val()
+    // let city = $("#searchValue").val()
     let favoriteArr = [];
 
 
@@ -9,22 +9,33 @@ $(document).ready(() => {
 
     $("#searchBtn").on("click", function (event) {
         $("#houses").empty();
-        let city = $("#searchValue").val()
+        let maxPrice = $("#maxPrice").val();
+        let minBeds = $("#minBeds").val();
+        let minBaths = $("#minBaths").val();
+        let cityVal = $("#searchValue").val()
+        let stateCodeArr = cityVal.split(",");
+        let stateCode = stateCodeArr[1];
+        let city = stateCodeArr[0];
+
+
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://realtor.p.rapidapi.com/properties/v2/list-for-sale?sort=relevance&city=" + city + "&limit=100&offset=0&state_code=",
+            "url": "https://realtor.p.rapidapi.com/properties/v2/list-for-sale?beds_min=" + minBeds + "&sort=relevance&baths_min=" + minBaths +"&price_max=" + maxPrice + "&city=" + city + "&limit=100&offset=0&state_code=" + stateCode,
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "realtor.p.rapidapi.com",
                 "x-rapidapi-key": "28fa3a645fmsh6347d64020ec954p186251jsn525605cce2a6"
             }
         }
-        console.log(city);
+        // console.log(city);
         event.preventDefault()
 
         $.ajax(settings).done((response) => {
             console.log(response);
+            console.log(stateCode);
+            
+
             for (let i = 0; i < response.properties.length; i++) {
                 var newDiv = $("<div>")
                 var newTitle = $("<h3>");
@@ -71,6 +82,7 @@ $(document).ready(() => {
               
                 let houseToSave = response.properties[houseIndex]
                 
+            // console.log($("#userID").attr("data-id"));
             
                 const handleFavSubmit = () => {
                     
@@ -80,25 +92,16 @@ $(document).ready(() => {
                         address: houseToSave.address.line,
                         img: houseToSave.thumbnail,
                         price: houseToSave.price,
+                        square_feet: houseToSave.building_size.size,
                         bedrooms: houseToSave.beds,
                         bathrooms: houseToSave.baths,
-                        sqft: houseToSave.building_size.size,
-                        user_id: 1
+                        state_code: houseToSave.address.state_code,
+                        user_id: $("#userID").attr("data-id")
                         
                     })
                 };
 
                 handleFavSubmit()
-                // let favoriteHouse = [{
-                //     address: houseToSave.address.line,
-                //     img: houseToSave.thumbnail,
-                //     price: houseToSave.price,
-                //     bedrooms: houseToSave.beds,
-                //     bathrooms: houseToSave.baths,
-                //     sqft: houseToSave.building_size.size
-                // }]
-                // favoriteArr.push(favoriteHouse)
-                // console.log(favoriteArr);
         
             })
 
@@ -107,6 +110,11 @@ $(document).ready(() => {
         });
 
     })
+
+    
+
+
+
 
 
     function addFavorite(favData) {
